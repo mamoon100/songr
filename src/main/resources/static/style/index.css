@@ -1,0 +1,9 @@
+main {
+  display: grid;
+  place-items: center;
+}
+
+main h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
