@@ -4,6 +4,12 @@ This Site is solution for Java401d5, and it's contains a wep application that Us
 
 ## Usage
 
+To Start the Application run the following command in the terminal:
+`$ gradle bootRun`
+and this will start Spring boot server at port 8080.
+
+> http://localhost:8080/
+
 This Site contains some end point mapping:
 
 1. `/` The Root end point that will great you and display the browser and operating system the user use.
