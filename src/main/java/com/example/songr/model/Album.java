@@ -1,20 +1,32 @@
 package com.example.songr.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Album {
     //    title, an artist, a songCount, a length (in seconds), and an imageUr
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    @Column(unique = true)
     private String title;
     private String artist;
     private int songCount;
-    private int length;
+    private int len;
     private String imageUrl;
 
 
-    public Album(String title, String artist, int songCount, int length, String imageUrl) {
+    public Album(String title, String artist, int songCount, int len, String imageUrl) {
         this.title = title;
         this.artist = artist;
         this.songCount = songCount;
-        this.length = length;
+        this.len = len;
         this.imageUrl = imageUrl;
+    }
+
+    protected Album() {
+
     }
 
     public String getTitle() {
@@ -41,12 +53,12 @@ public class Album {
         this.songCount = songCount;
     }
 
-    public int getLength() {
-        return length;
+    public int getLen() {
+        return len;
     }
 
-    public void setLength(int length) {
-        this.length = length;
+    public void setLen(int len) {
+        this.len = len;
     }
 
     public String getImageUrl() {
@@ -55,5 +67,21 @@ public class Album {
 
     public void setImageUrl(String imageUr) {
         this.imageUrl = imageUr;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", artist='" + artist + '\'' +
+                ", songCount=" + songCount +
+                ", len=" + len +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
     }
 }

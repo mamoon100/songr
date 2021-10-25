@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <title>Albums</title>
-    <link rel="Music Icon" href="assets/logo.png" />
-    <link rel="stylesheet" href="style/reset.css" />
-    <link rel="stylesheet" href="style/general.css" />
-    <link rel="stylesheet" href="style/albums.css" />
-  </head>
-  <body>
-    <header>
-      <img src="assets/logo.png" alt="Logo" />
-    </header>
-    <main>
-      <div class="card" th:each="album : ${albums}">
-        <img th:src="${album.imageUrl}" alt="cover" />
+    <link rel="Music Icon" href="/assets/logo.png"/>
+    <link rel="stylesheet" href="/style/reset.css"/>
+    <link rel="stylesheet" href="/style/general.css"/>
+    <link rel="stylesheet" href="/style/albums.css"/>
+</head>
+<body>
+<header>
+    <img src="/assets/logo.png" alt="Logo"/>
+</header>
+<main>
+    <div class="card" th:each="album : ${albums}">
+        <img th:src="${album.imageUrl}" alt="cover"/>
         <h2 th:text="${album.title}"></h2>
         <span>
           <span>
@@ -27,13 +27,13 @@
           </span>
           <span>
             <p>Length in Seconds:</p>
-            <p th:text="${album.length}"></p>
+            <p th:text="${album.len}"></p>
           </span>
         </span>
-      </div>
-    </main>
-    <footer>
-      <p>This content was created by Mamoun Hussein &copy; 2021 LTUC</p>
-    </footer>
-  </body>
+    </div>
+</main>
+<footer>
+    <p>This content was created by Mamoun Hussein &copy; 2021 LTUC</p>
+</footer>
+</body>
 </html>
