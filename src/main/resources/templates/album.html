@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${album.title}"></title>
+    <link rel="Music Icon" th:href="${album.imageUrl}"/>
+    <link rel="stylesheet" href="/style/reset.css"/>
+    <link rel="stylesheet" href="/style/general.css"/>
+    <link rel="stylesheet" href="/style/album.css">
+</head>
+<body>
+<header>
+    <img src="/assets/logo.png" alt="Logo"/>
+</header>
+<main>
+    <section>
+        <img th:src="${album.imageUrl}" alt="cover"/>
+        <h2 th:text="${album.title}"></h2>
+        <span>
+          <span>
+            <p>Artist:</p>
+            <p th:text="${album.artist}"></p>
+          </span>
+          <span>
+            <p>No. Songs:</p>
+            <p th:text="${album.songCount}"></p>
+          </span>
+          <span>
+            <p>Length in Seconds:</p>
+            <p th:text="${album.len}"></p>
+          </span>
+        </span>
+    </section>
+
+    <section>
+        <div th:each="song : ${songs}">
+            <h5 th:text="${song.title}"></h5>
+            <span>
+                <p th:text="${song.len}"></p>
+                <p th:text="${song.trackNumber}"></p>
+            </span>
+        </div>
+    </section>
+    <form method="post" action="/album/Origins">
+        <label for="title">
+            Song Title
+            <input type="text" name="title" id="title" placeholder="Song title">
+        </label>
+        <label for="trackNumber">
+            Track Number
+            <input type="number" name="trackNumber" id="trackNumber" placeholder="Track Number">
+        </label>
+        <label for="len">
+            Song Length
+            <input type="number" name="len" id="len" placeholder="Song Length">
+        </label>
+        <select name="album">
+            <option th:value="${album}" th:text="${album.title}">
+            </option>
+        </select>
+        <button name="submit" type="submit">Submit</button>
+    </form>
+</main>
+<footer>
+    <p>This content was created by Mamoun Hussein &copy; 2021 LTUC</p>
+</footer>
+</body>
+</html>

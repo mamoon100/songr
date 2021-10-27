@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Songs</title>
+</head>
+<body>
+
+<ul>
+    <li th:each="song: ${songs}">
+        <p th:text="${song.title}"></p>
+        <p th:text="${song.len}"></p>
+        <p th:text="${song.trackNumber}"></p>
+        <p th:text="${song.album.title}"></p>
+    </li>
+</ul>
+</body>
+</html>
