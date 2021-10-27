@@ -1,13 +1,15 @@
 package com.example.songr.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Album {
     //    title, an artist, a songCount, a length (in seconds), and an imageUr
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(unique = true)
     private String title;
@@ -15,6 +17,12 @@ public class Album {
     private int songCount;
     private int len;
     private String imageUrl;
+    @OneToMany(mappedBy = "album")
+    private List<Song> songs;
+
+    public List<Song> getSongs() {
+        return songs;
+    }
 
 
     public Album(String title, String artist, int songCount, int len, String imageUrl) {

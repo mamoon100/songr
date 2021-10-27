@@ -29,7 +29,9 @@
             <p>Length in Seconds:</p>
             <p th:text="${album.len}"></p>
           </span>
+
         </span>
+        <a th:href="'/album/'+${album.title}">See all Song about this Album</a>
     </div>
 </main>
 <footer>
