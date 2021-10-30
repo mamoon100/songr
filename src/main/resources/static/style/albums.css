@@ -1,13 +1,23 @@
 main {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 25px;
   margin: 20px;
   padding: 10px;
 }
 
-main div {
-  width: 450px;
+main section {
+  overflow: auto;
+  scroll-behavior: smooth;
+  gap: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 1080px;
+  border: 2px solid rgb(170, 170, 170);
+}
+
+main section div {
+  width: 280px;
   padding: 5px;
   border: 2px solid rgb(120, 120, 120);
   display: grid;
@@ -15,17 +25,17 @@ main div {
   gap: 15px;
 }
 
-main div h2 {
+main section div h2 {
   font-size: 26px;
   font-weight: 700;
 }
 
-main div img {
-  width: 100%;
+main section div img {
+  width: 280px;
   height: 400px;
 }
 
-main div span {
+main section div span {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -33,11 +43,20 @@ main div span {
   border-top: 2px solid gray;
 }
 
-main div span span {
+main section div span span {
   display: grid;
   border-top: none;
 }
 
-main div span span p {
+main section div span span p {
   font-weight: 400;
+}
+
+form {
+  width: 200px;
+  padding: 5px;
+  border: 2px solid rgb(120, 120, 120);
+  display: grid;
+  place-items: center;
+  /* gap: 15px; */
 }

@@ -5,8 +5,6 @@ import com.example.songr.model.Song;
 import com.example.songr.repository.AlbumRepository;
 import com.example.songr.repository.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,47 +37,51 @@ public class General {
         return "hello";
     }
 
+
     @GetMapping("/album/{title}")
-//    @ResponseBody
     public String albumByTitle(@PathVariable String title, Model model) {
         Album album = albumRepository.findAlbumByTitle(title);
         Song[] songs = songRepository.findSongByAlbum(album);
         model.addAttribute("album", album);
         model.addAttribute("songs", songs);
-//        System.out.println(Arrays.toString(albums));
-//        System.out.println(Arrays.toString(songs));
-//        return album.getTitle();
+        model.addAttribute("song", new Song());
         return "album";
     }
 
-    @PostMapping("/album/{title}")
-    public RedirectView addSongByAlbum(@PathVariable String title, @RequestBody Song song) {
-        System.out.println(song);
-        Album album = albumRepository.findAlbumByTitle(title);
-//        songRepository.save(song);
-        return new RedirectView("/album/" + title);
+    @PostMapping("/{title}/addSong")
+    public RedirectView addSongByAlbum(@ModelAttribute Song song, @PathVariable String title) {
+        try {
+            Album album = albumRepository.findAlbumByTitle(title);
+            song.setAlbum(album);
+            System.out.println(title);
+            songRepository.save(song);
+            return new RedirectView("/album/" + title);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new RedirectView("/error");
+        }
     }
 
     @PostMapping("/addAlbum")
-    @ResponseBody
-    public ResponseEntity<Album> addAlbum(@RequestBody Album album) {
+    public RedirectView addAlbum(@ModelAttribute Album album, Model model) {
         try {
             albumRepository.save(album);
-            return new ResponseEntity<>(album, HttpStatus.ACCEPTED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            System.out.println("Duplicated Title");
         }
+        model.addAttribute("album", album);
+        return new RedirectView("albums");
     }
 
     @DeleteMapping("/deleteAlbum/{title}")
-    public ResponseEntity<Album> deleteAlbum(@PathVariable String title) {
+    public RedirectView deleteAlbum(@PathVariable String title) {
         try {
             Album album = albumRepository.findAlbumByTitle(title);
             albumRepository.delete(album);
-            return new ResponseEntity<>(album, HttpStatus.ACCEPTED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            e.printStackTrace();
         }
+        return new RedirectView("/albums");
     }
 
     @GetMapping("/albums")
@@ -93,6 +95,7 @@ public class General {
         Song sevenRings = new Song("Seven Rings", 180, 10, thankYouNext);
         // this try and catch is just for seeding
         try {
+
             albumRepository.save(happierThanEver);
             albumRepository.save(thankYouNext);
             albumRepository.save(origin);
@@ -104,6 +107,8 @@ public class General {
             System.out.println("Duplicate title valuse");
         }
         Iterable<Album> albums = albumRepository.findAll();
+//        Album album = new Album("", "", 0, 0, "");
+        model.addAttribute("album", new Album());
         model.addAttribute("albums", albums);
         return "albums";
 

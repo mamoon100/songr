@@ -33,7 +33,7 @@ public class Album {
         this.imageUrl = imageUrl;
     }
 
-    protected Album() {
+    public Album() {
 
     }
 
@@ -80,6 +80,7 @@ public class Album {
     public int getId() {
         return id;
     }
+
 
     @Override
     public String toString() {

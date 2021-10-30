@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 @Entity
 public class Song {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,9 +23,17 @@ public class Song {
         this.title = title;
         this.len = len;
         this.trackNumber = trackNumber;
+        this.album = album;
     }
 
-    protected Song() {
+    public Song(String title, int len, int trackNumber) {
+        this.title = title;
+        this.len = len;
+        this.trackNumber = trackNumber;
+    }
+
+
+    public Song() {
 
     }
 
@@ -55,6 +62,11 @@ public class Song {
     }
 
     public void setTrackNumber(int trackNumber) {
+
         this.trackNumber = trackNumber;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
     }
 }
