@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Songs</title>
+    <link rel="Music Icon" href="/assets/logo.png"/>
+    <link rel="stylesheet" href="/style/reset.css"/>
+    <link rel="stylesheet" href="/style/general.css"/>
+    <link rel="stylesheet" href="/style/songs.css">
 </head>
 <body>
-
-<ul>
-    <li th:each="song: ${songs}">
-        <p th:text="${song.title}"></p>
-        <p th:text="${song.len}"></p>
-        <p th:text="${song.trackNumber}"></p>
-        <p th:text="${song.album.title}"></p>
-    </li>
-</ul>
+<header>
+    <img src="/assets/logo.png" alt="Logo"/>
+</header>
+<main>
+    <ul th:each="song: ${songs}">
+        <li th:text="'Song Title:  '+${song.title}"></li>
+        <li th:text="'Song Length' + ${song.len}"></li>
+        <li th:text="'Track NO.:  '+${song.trackNumber}"></li>
+        <li th:text="'Song Album:  '+${song.album.title}"></li>
+    </ul>
+</main>
+<footer>
+    <p>This content was created by Mamoun Hussein &copy; 2021 LTUC</p>
+</footer>
 </body>
 </html>
